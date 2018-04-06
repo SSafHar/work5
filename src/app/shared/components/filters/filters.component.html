@@ -1,0 +1,53 @@
+<div class="b-filters" [class.active]='toggleFilter'>
+  <!-- CHECKBOX FILTER -->
+
+  <p class="b-filters__mobile--head" (click)="toggleAccordeon = !toggleAccordeon ">
+    <span>Genre Filters</span>
+    <i [class]="!toggleAccordeon ? 'icon-add' : 'icon-sub'"></i>
+  </p>
+
+  <div class="b-filters__body" [class.active]="toggleAccordeon">
+    <div class="b-filters__desktop--head" [class.active]="toggleAccordeon">
+      <h2>Genre Filters</h2>
+      <h3>Filter by:</h3>
+    </div>
+
+    <div class="g-checkbox" *ngFor="let filter of filters;index as i; trackBy: trackByFn">
+      <input type="checkbox" [id]="'filter'+i" [name]="'filter'+i">
+      <label [for]="'filter'+i" (click)='publicSetCategory(filter.id)'><i class="icon-checkmark"></i>{{filter.name}}</label>
+    </div>
+  </div>
+
+  <div class="b-filters__toggle">
+    <p>Sort Filters</p>
+    <i class="icon-filter" (click)="toggleFilter = !toggleFilter;toggleAccordeon = true"></i>
+  </div>
+
+  <!-- SORT BUTTONS FILTER -->
+  <p class="b-filters__mobile--head" (click)="toggleSort = !toggleSort">
+    <span>Sort</span>
+    <i [class]="!toggleSort ? 'icon-add' : 'icon-sub'"></i>
+  </p>
+  <div [class.active]="toggleSort">
+    <button class="g-btn-default__sm-thick--hollow" *ngFor="let sortBy of sort_by; index as i; trackBy: trackByFn" name="button" (click)="sortByChange(sortBy.id)">{{sortBy.name}}</button>
+  </div>
+
+  <!-- IMDB SLIDER FILTER -->
+  <p class="b-filters__mobile--head" (click)="toggleSlider = !toggleSlider">
+    <span>IMDB Minimum</span>
+    <i [class]="!toggleSlider ? 'icon-add' : 'icon-sub'"></i>
+  </p>
+  <div class="g-slider" [class.active]="toggleSlider">
+    <nouislider (start)="return" [min]="0" [max]="10" [connect]="[true,false]" [(ngModel)]="imdb_min" (click)="setImdbMin(imdb_min)"></nouislider>
+    <span>{{imdb_min | number:'.0-1'}}</span>
+  </div>
+
+  <!-- PAGE ORDER BUTTON FILTER -->
+  <p class="b-filters__mobile--head" (click)="toggleOrder = !toggleOrder">
+    <span>Page Order</span>
+    <i [class]="!toggleOrder ? 'icon-add' : 'icon-sub'"></i>
+  </p>
+  <div [class.active]="toggleOrder">
+    <button class="g-btn-default__sm-thick--hollow" *ngFor="let sortType of sort_type;index as i; trackBy: trackByFn" name="button" (click)="sortTypeChange(sortType.id)">{{sortType.name}}</button>
+  </div>
+</div>

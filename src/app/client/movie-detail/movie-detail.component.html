@@ -1,0 +1,26 @@
+<div class="g-main p-single-movie">
+  <div class="container">
+    <h1>{{ movie.name}}<span> ({{movie.year}})</span></h1>
+    <div class="row">
+      <div class="col">
+        <div class="p-single-movie__meta-item">Rated<span>{{movie.rating}}</span></div>
+        <div class="p-single-movie__meta-item" *ngIf="movie.imdb">IMdb<span>{{movie.imdb}}</span></div>
+        <div class="p-single-movie__meta-item">Runtime<span>{{movie.runtime}}</span></div>
+        <div class="p-single-movie__meta-item">Genre<span *ngFor="let genre of movie.categories">{{genre.name}}</span>
+        </div>
+      </div>
+      <div class="p-single-movie__actions">
+        <button class="g-btn-default__default-default--hollow" type="button" name="button" (click)="player.play()">PLAY MOVIE</button>
+        <a [href]="movie.download_link" target="_blank">
+          <button class="g-btn-default__default-default--hollow" type="button" name="button" (click)="downloadMovie($event)">DOWNLOAD</button>
+        </a>
+      </div>
+      <div class="col-12 p-single-movie__storylines">
+        <h3>Storyline</h3>
+        <p>{{movie.description}}</p>
+      </div>
+      <flowplayer [source]="movie.video_url" #player></flowplayer>
+    </div>
+  </div>
+
+</div>

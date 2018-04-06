@@ -1,0 +1,77 @@
+<div class="g-nav__logo">
+  <a class="g-nav__logo--desktop" href="/home"><img src="../assets/img/Logo_circular.png" alt="logo"></a>
+  <a class="g-nav__logo--mobile" href="/home" *ngIf="view !== '/movies'"><img src="../assets/img/Logo_circular.png" alt="logo"></a>
+  <i class="icon-filter" *ngIf="view === '/movies'" (click)="toggleFilters(!showFilter)"></i>
+</div>
+
+<ng-container *ngIf="!isAdmin">
+
+  <i class="icon-dash" (click)="toggleSidebar(!showBar);sideBarOpened=!sideBarOpened"></i>
+
+  <div class="g-nav__search--client">
+    <i class="icon-search"></i>
+    <autocomplete-dropdown [adminStyle]="false" [placeholder]="'Search for movies'"></autocomplete-dropdown>
+  </div>
+  <p *ngIf="user && user.free_minutes" class="minutes">
+    <i class="icon-premium"></i>
+    <span>{{user.free_minutes}} minutes</span> bonus time remaining!<span routerLink="/premium"> Get more</span>
+  </p>
+  <div class="g-nav__user" *ngIf="user" [class.active]="showSettings" (click)="showSettings = !showSettings">
+    <div class="g-nav__user--profile" [class.premium]='user.is_premium' (clickOutside)="showSettings = false">
+      <div class="g-nav__user--profile--image" [class.premium-user]="user.is_premium"><img [image]="user.image.url" size="small"></div>
+      <div>
+        <h3>{{user.name}}</h3>
+        <h5>{{user.email}}</h5>
+        <i class="icon-premium" *ngIf='user.is_premium'></i>
+      </div>
+      <i class="icon-downArrow"></i>
+    </div>
+    <div class="g-nav__user--profile-item">
+      <p *ngIf="user.free_minutes" class="minutes-mobile">
+        <i class="icon-premium"></i>
+        <span>{{user.free_minutes}} minutes</span> bonus time remaining!<span routerLink="/premium"> Get more</span>
+      </p>
+      <p class="alert" *ngIf="!user.is_premium && !user.free_minutes" routerLink="/premium">Get premium</p>
+      <a routerLink="/account">Account</a>
+      <a routerLink="/account/changePass">Change Password</a>
+      <a routerLink="/account/cancel">Cancel Membership</a>
+      <a routerLink="/premium">Explore Premium Plans</a>
+      <a (click)="logout()">Sign Out</a>
+    </div>
+  </div>
+
+  <div class="g-nav__buttons" *ngIf="!user">
+    <button class="g-btn-default__default-default--hollow" name="button" routerLink="/login">Login</button>
+    <button class="g-btn-default__default-default--hollow" name="button" routerLink="/signup">Create an Account</button>
+  </div>
+
+  <div class="g-nav__buttons__modal" *ngIf="!user && showButtons">
+    <i class="icon-cancel" (click)="showButtons = false"></i>
+    <button class="g-btn-default__default-default--hollow" name="button" routerLink="/login" (click)="showButtons = false">Login</button>
+    <button class="g-btn-default__default-default--hollow" name="button" routerLink="/signup" (click)="showButtons = false">Create an Account</button>
+  </div>
+
+  <i class="icon-login" (click)="showButtons = !showButtons" *ngIf="!user"></i>
+</ng-container>
+
+<ng-container *ngIf="isAdmin">
+  <div class="g-nav__search--admin">
+    <input class="g-input--navbar-search" type="search" placeholder="Search for {{isMoviesPage ? 'movies' : 'members'}}…" (input)="doFilter(q.value)" #q>
+    <button type="button" class="g-btn-default__sm-thick--fill">Search</button>
+  </div>
+  <i class="icon-dash" (click)="toggleSidebar(!showBar)"></i>
+  <div class="g-nav__user" *ngIf="user" [class.active]="showSettings" (click)="showSettings = !showSettings">
+    <div class="g-nav__user--profile" (clickOutside)="showSettings = false">
+      <div class="g-nav__user--profile--image"><img [image]="user.image.url" size="small"></div>
+      <div>
+        <h3>{{user.name}}</h3>
+        <h5>Admin</h5>
+      </div>
+      <i class="icon-downArrow"></i>
+    </div>
+    <div class="g-nav__user--profile-item">
+      <a href="" (click)="logout()">Sign Out</a>
+    </div>
+  </div>
+
+</ng-container>

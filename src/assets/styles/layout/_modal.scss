@@ -1,0 +1,139 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the modals.
+// -----------------------------------------------------------------------------
+
+.g-modal {
+  @include flexbox();
+  @extend %modal;
+  background-color: rgba($black,0.5);
+  @include when-inside(cropper-modal) {
+    z-index: 100000;
+
+    .g-modal__container {
+      overflow-y: hidden;
+      width     : 600px;
+      max-height: 100%;
+      @include shadow(0,0,2,2,$white,0.2);
+
+      .col-12 {
+        @include flexbox();
+      }
+    }
+  };
+  height          : 100vh;
+
+  &__container {
+    @include respond-to(xs) {
+      padding: 0 10px;
+    }
+    @include respond-to(md) {
+      padding: 0 10px;
+    }
+    @include respond-to(md) {
+      padding: 0;
+    }
+    position  : relative;
+    max-width : 767px;
+    max-height: 80%;
+    overflow-y: scroll;
+    width     : 100%;
+
+    &-head {
+      height                 : 83px;
+      padding                : 20px;
+      text-align             : center;
+      border-top-left-radius : 4px;
+      border-top-right-radius: 4px;
+      background-color       : $blue-gray;
+
+      h1 {
+        margin: 0;
+      }
+
+      button,
+      span {
+        position  : absolute;
+        z-index   : 10;
+        top       : 10px;
+        right     : 10px;
+        background: none;
+
+        i {
+          width    : 16px;
+          height   : 16px;
+          padding: 2px 10px;
+          font-size: 16px;
+          color    : $white;
+        }
+      }
+
+      &__user {
+        display   : inline-block;
+        text-align: left;
+
+        p {
+          color: $white;
+        }
+      }
+    }
+
+    &-body {
+      @include respond-to(xs) {
+        padding: 25px 10px;
+      }
+      @include respond-to(md) {
+        padding: 25px 10px;
+      }
+      @include respond-to(md) {
+        padding: 25px 75px;
+      }
+
+      border-radius   : 4px;
+      background-color: $mid-gray;
+
+      label,
+      p {
+        font-size: 13px;
+        color    : $light-blue-gray;
+      }
+
+      h5 {
+        margin-bottom: 25px;
+        text-align   : center;
+      }
+
+      .g-checkbox {
+        margin-bottom: 22px;
+      }
+
+      button {
+        margin-bottom: 15px;
+      }
+
+      &--title {
+        position: relative;
+        @include flexbox();
+
+        label {
+          width: 100%;
+        }
+
+        > .g-input--dark {
+          flex-basis: 0;
+          flex-grow : 1;
+
+          input {
+            border-top-right-radius   : 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+
+        button {
+          border-top-left-radius   : 0;
+          border-bottom-left-radius: 0;
+          margin-bottom            : 10px !important;
+        }
+      }
+    }
+  }
+}

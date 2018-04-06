@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the meta data of the movies.
+// -----------------------------------------------------------------------------
+
+////
+/// This is a group comment will create a new sidebar item in sassdoc.
+/// @group Buttons
+
+.g-btn{
+  border: 4px solid;
+  border-radius: 5px;
+  margin: 10px; width: 200px;
+  height: 50px;
+  @include border-linear-gradient();
+}

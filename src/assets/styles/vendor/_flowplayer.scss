@@ -1,0 +1,61 @@
+.fp-header{
+  display: none;
+}
+.fp-timeline{
+  height: 16px !important;
+  background-color: #212332 !important;
+}
+.fp-buffer{
+  height: 16px !important;
+  background-color: #5e658d !important;
+}
+
+.fp-timestamp, .fp-progress{
+  height: 16px !important;
+  background-color: #46cdfc !important;
+  opacity: 1;
+}
+
+.fp-progress{
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: -2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+  }
+}
+
+.fp-volume{
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+.fp-controls{
+  height: 50px;
+  background-color: #252839;
+}
+.fp-elapsed, .fp-bar .fp-remaining,.fp-duration{
+  font-size: 12px !important;
+}
+.fp-color{
+  background: #46cdfc !important;
+}
+
+.flowplayer .fp-message.fp-shown {
+  font-size: 14px;
+  background: #5e658d;
+  text-align: center;
+  white-space: pre;
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  top: 90px;
+  padding: 20px;
+  bottom: 0;
+  margin: auto;
+}

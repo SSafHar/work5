@@ -1,0 +1,24 @@
+<loaders-css *ngIf="busy" [loader]="'square-spin'"></loaders-css>
+<div class="p-home g-main">
+  <div class="container">
+    <div class="p-home__banner-notification" *ngIf="banner">
+      <p>{{banner}}</p>
+    </div>
+    <div class="row">
+      <div class="col-xl-2 col-lg-3 col-md-4 col-12" *ngFor='let movie of movies; index as i; trackBy: trackByFn'>
+        <div class="g-movie-card">
+          <a class="g-movie-card__movie" [routerLink]="['/movie/'+movie.id]">
+            <img [image]="movie.cover_image.url">
+            <div class="g-movie-card__movie-play">
+              <i class="icon-play"></i>
+              <h3>PLAY</h3>
+            </div>
+          </a>
+          <h3>{{movie.name}}</h3>
+          <p *ngIf="movie.imdb"><span>iMDb</span>{{movie.imdb}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <paginator *ngIf="paginator && movies" [paginator]="paginator" (change)="changePage($event)"></paginator>
+</div>

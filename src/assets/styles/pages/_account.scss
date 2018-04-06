@@ -1,0 +1,106 @@
+// —---------------------------------------------------------------------------
+//This file contains styles that are specific to the account profile page.
+// —---------------------------------------------------------------------------
+.p-account {
+  @include respond-to(xs) {
+    padding: 25px 0;
+  }
+
+  @include respond-to(sm) {
+    padding: 50px 0;
+  }
+
+  justify-content: flex-start;
+  text-align     : center;
+  background     : $light-gray;
+
+  &__action {
+    text-align    : center;
+    padding-top   : 30px;
+    padding-bottom: 50px;
+
+    a {
+      @include respond-to(xs) {
+        display  : block;
+        font-size: 20px;
+        padding  : 10px 0;
+      }
+      @include respond-to(md) {
+        display  : inline-block;
+        font-size: 20px;
+        padding  : 10px 5px;
+      }
+      @include respond-to(md) {
+        display  : inline-block;
+        font-size: 20px;
+        padding  : 10px 20px;
+      }
+      @include respond-to(lg) {
+        display  : inline-block;
+        font-size: 30px;
+        padding  : 10px 20px;
+      }
+      @include on-event() {
+        color        : $white !important;
+        border-bottom: 2px solid $blue;
+      }
+      text-decoration: none;
+      color          : $blue-gray !important;
+    }
+  }
+
+  &__profile {
+    &-upload {
+      @include respond-to(xs) {
+        margin-bottom: 20px;
+      }
+      @include respond-to(md) {
+        margin-bottom: 0;
+      }
+
+      image-uploader {
+        display: inline-block;
+        width  : 130px;
+        height : 130px;
+      }
+    }
+
+    &-items {
+      .g-input {
+        margin-bottom: 20px;
+      }
+    }
+
+    button[type='submit'] {
+      margin-top: 60px;
+    }
+  }
+
+  &__password {
+    justify-content: center;
+
+    &-banner {
+      margin-bottom: 35px;
+    }
+
+    &-notification {
+      padding         : 5px;
+      margin-bottom   : 8px;
+      border-radius   : 4px;
+      background-color: $mid-gray;
+      font-size       : 12px;
+    }
+  }
+
+  &__membership {
+    justify-content: center;
+
+    textarea::placeholder {
+      text-align: center;
+    }
+  }
+
+  &__button {
+    margin: 50px 0;
+  }
+}

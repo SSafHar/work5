@@ -1,0 +1,63 @@
+<loaders-css *ngIf="busy" [loader]="'square-spin'"></loaders-css>
+<div class="p-premium g-main">
+  <div class="g-container-lg">
+    <img src="/assets/icon/logo/odeon_full_light.png" alt="Logo">
+    <h1>{{!selectedPlan ? 'PREMIUM SERVICE': 'PAYMENT FORM'}}</h1>
+    <p *ngIf="!selectedPlan">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut l minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+    </p>
+
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 col-12" *ngFor="let plan of plans">
+        <div class="g-premium-card" [class.selected]="selectedPlan && selectedPlan.id === plan.id" (click)="selectedPlan = plan">
+          <h1>{{plan.name}}</h1>
+          <p>{{plan.description}}</p>
+          <h2>${{plan.amount/100}}</h2>
+          <button class="g-btn-default__default-default--fill" *ngIf="!selectedPlan" type="button" (click)="selectPlan(plan)">CHOOSE PLAN
+          </button>
+        </div>
+        <ng-container *ngIf='!selectedPlan'>
+          <p *ngFor="let feature of plan.features">{{feature}}</p>
+        </ng-container>
+      </div>
+    </div>
+    <form class="row b-payment" [class.active]="selectedPlan" novalidate>
+      <div class="col-12" *ngIf="selectedPlan">
+        <h3>Charge will appear as "{{selectedPlan.name}}" subscription:<span>$ {{selectedPlan.amount/100}}</span></h3>
+      </div>
+      <div class="col-12">
+        <p class="mb-4 mt-4">Please enter your credit card details below </p>
+      </div>
+      <div class="col-sm-6 col-12">
+        <p>Card #</p>
+        <div class="g-input" [class.invalid]="card_number.touched && card_number.invalid">
+          <input type="text" #card_number="ngModel" name="card_number" myNumberOnly placeholder="1234 1234 1234 1234" minlength="19" maxlength="19" data-stripe="number" (keypress)="addSpace($event)" [(ngModel)]="cardDetails.cardNumber" required>
+        </div>
+      </div>
+      <div class="col-sm-6 col-12">
+        <p>CVV / Security Code</p>
+        <div class="g-input">
+          <input type="text" name="cvc" #cvc="ngModel" myNumberOnly placeholder="111" minlength="3" maxlength="4" data-stripe="cvc" [(ngModel)]="cardDetails.cardCvc" required>
+        </div>
+      </div>
+      <div class="col-sm-6 col-12 mt-2">
+        <p>Exp. Month</p>
+        <dropdown [plans]="false" label="01" [data]="months" name="expiry_month" data-stripe="exp_month" (change)="setExpMonth($event)"></dropdown>
+      </div>
+      <div class="col-sm-6 col-12 mt-2">
+        <p>Exp. Year</p>
+        <div class="g-input">
+          <input type="text" name="expiry_year" #expiry_year="ngModel" myNumberOnly [placeholder]="currentYear" [min]="currentYear" max="99" maxlength="2" data-stripe="exp_year" [(ngModel)]="cardDetails.expYear" required>
+        </div>
+      </div>
+      <div class="col-sm-6 col-12 text-center">
+        <button class="g-btn-red__default-default--hollow" type="button" (click)="selectedPlan = null">GO BACK</button>
+      </div>
+      <div class="col-sm-6 col-12 text-center">
+        <button class="g-btn-green__default-default--hollow" type="button" [disabled]="card_number.invalid || cvc.invalid" (click)="checkout()">CONFIRM PAYMENT</button>
+      </div>
+    </form>
+  </div>
+  <div class="w-100"></div>
+  <p class="text-center">ALL OF OUR CONTENT IS FOR
+    <a href="#">PROMO USE ONLY </a>! PLEASE SUPPORT THE STUDIOS THAT PUBLISH WORK THAT YOU LOVE !</p>
+</div>

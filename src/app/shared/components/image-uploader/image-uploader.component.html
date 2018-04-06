@@ -1,0 +1,14 @@
+<cropper-modal *ngIf='showCropper' [ratio]='options.ratio' (confirm)="setCroppedImage($event)"
+               (dismiss)='showCropper = false' [img]="imageAsBase64" [mime]="fileMimeType"></cropper-modal>
+<div [class]="'g-image-uploader__' + theme" ng2FileDrop (change)="onChange($event)" [uploader]="uploaderInstance" (click)=fileInput.click()>
+  <div *ngIf='!imageAsBase64 && !defaultImage'>
+    <p>{{placeholder}}</p>
+  </div>
+  <div class="g-image-uploader_view" *ngIf="imageAsBase64 || defaultImage" [ngStyle]="{'background-image': 'url(' + (imageAsBase64 || defaultImage) + ')'}">
+    <button class="g-ibtn-cropper" *ngIf='imageAsBase64 && !options.hideCropper' type="button"
+            (click)="$event.stopPropagation(); showCropper = true;"><i class="icon-crop"></i></button>
+    <button class="g-ibtn-cropper" type="button" (click)="$event.stopPropagation(); remove()"><i class="icon-trash"></i>
+    </button>
+  </div>
+  <input type="file" #fileInput ng2FileSelect [uploader]="uploaderInstance" class="hidden_uploader" accept=".png, jpg,.jpeg">
+</div>

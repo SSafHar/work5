@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
+  <!-- base url -->
+  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
+  <% if (webpackConfig.htmlElements.headTags) { %>
+  <!-- Configured Head Tags  -->
+  <%= webpackConfig.htmlElements.headTags %>
+  <% } %>
+
+
+  <%= htmlWebpackPlugin.files.webpackManifest %>
+
+  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
+  <!-- Webpack Dev Server reload -->
+  <script src="/webpack-dev-server.js"></script>
+  <% } %>
+
+  <!-- Async Google Analytics: change UA-71073175-1 to be your site's ID -->
+  <!-- End Google Analytics -->
+
+  <!-- CSS will be injected by webpack here -->
+  <!-- Preload link tags will be injected by webpack here -->
+  <!-- 1. skin -->
+  <link rel="stylesheet" href="//releases.flowplayer.org/7.2.1/skin/skin.css">
+
+  <!-- 2. jquery library - required for video tag based installs -->
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+
+  <!-- 3. flowplayer -->
+  <script src="//releases.flowplayer.org/7.2.1/flowplayer.js"></script>
+
+  <!-- 3. wowza media system -->
+  <script src="//player.wowza.com/player/1.0-latest/wowzaplayer.min.js"></script>
+
+  <!-- 4. stripe -->
+  <!--<script src="https://checkout.stripe.com/checkout.js"></script>-->
+  <script src="https://js.stripe.com/v2/"></script>
+
+  <!-- Flowplayer dash engine -->
+  <script src="//releases.flowplayer.org/dashjs/flowplayer.dashjs.min.js"></script>
+</head>
+
+<body>
+  <app></app>
+
+  <!-- Scripts will be injected by webpack here -->
+</body>
+</html>

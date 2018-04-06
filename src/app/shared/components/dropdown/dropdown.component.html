@@ -1,0 +1,6 @@
+<div class="g-input--dropdown">
+  <input type="text" name="name" required [placeholder]="label" disabled [value]="selectedValue?.name">
+</div>
+<div class="g-dropdown__body">
+  <div class="g-dropdown__body-item" *ngFor="let item of data" (click)="selectItem(item)" [class.selected]="selectedValue === item"><span>{{item.name}}</span></div>
+</div>

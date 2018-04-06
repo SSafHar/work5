@@ -1,0 +1,7 @@
+{
+  // Applications part
+  "apps" : [{
+    "name"      : "odeon",
+    "script"    : "npm run watch:prod",
+  }],
+}

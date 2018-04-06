@@ -1,0 +1,141 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+////
+/// This is a group comment will create a new sidebar item in sassdoc.
+/// @group Buttons
+$width: (
+  default: 201px,
+  xs     : 55px,
+  sm     : 105px,
+  full   : 100%,
+  auto   : auto
+);
+$thickness: (
+  default: (50px, 1.4, 14px),
+  thick  : (40px, 1.2, 12px),
+  normal : (36px, 1.1, 14px),
+  thin   : (30px, 1, 12px)
+);
+@mixin button($width, $thick, $lineheight, $font-size) {
+  @include on-event() {
+    outline: none;
+  };
+  display      : inline-block;
+  box-sizing   : border-box;
+  width        : $width;
+  height       : $thick;
+  border       : 3px solid transparent;
+  border-radius: 4px;
+  color        : $white;
+  font-family  : $font-lato;
+  font-size    : $font-size;
+  text-align   : center;
+  line-height  : $lineheight;
+}
+@each $widthName, $widthSize in $width {
+  @each $thickName, $thickSize in $thickness {
+    .g-btn-default__#{$widthName}-#{$thickName}--fill {
+      border: none !important;
+      @include button($widthSize, nth($thickSize, 1), nth($thickSize, 2), nth($thickSize, 3));
+      @include background-linear-gradient();
+    }
+
+    .g-btn-default__#{$widthName}-#{$thickName}--hollow {
+      @include on-event() {
+        @include background-linear-gradient();
+        border: none;
+
+        &:after {
+          display: none;
+        }
+      }
+
+      position       : relative;
+      background-clip: padding-box;
+
+      &:after {
+        position     : absolute;
+        content      : "";
+        width        : calc(100% + 6px);
+        height       : calc(100% + 6px);
+        top          : -3px;
+        left         : -3px;
+        z-index      : -1;
+        border-radius: 5px;
+        @include background-linear-gradient();
+      }
+      @include button($widthSize, nth($thickSize, 1), nth($thickSize, 2), nth($thickSize, 3));
+    }
+
+    .g-btn-green__#{$widthName}-#{$thickName}--hollow {
+      background-color: $green;
+      border-color    : $green;
+      @include button($widthSize, nth($thickSize, 1), nth($thickSize, 2), nth($thickSize, 3));
+    }
+
+    .g-btn-red__#{$widthName}-#{$thickName}--hollow {
+      background-color: $red;
+      border-color    : $red;
+      @include button($widthSize, nth($thickSize, 1), nth($thickSize, 2), nth($thickSize, 3));
+    }
+
+    .g-btn-gray__#{$widthName}-#{$thickName}--hollow {
+      background-color: $white-gray;
+      border-color    : $white-gray;
+      @include button($widthSize, nth($thickSize, 1), nth($thickSize, 2), nth($thickSize, 3));
+    }
+  }
+}
+
+.g-ibtn {
+  @include on-event() {
+    outline: none;
+  }
+  display      : inline-block;
+  box-sizing   : border-box;
+  width        : 34px;
+  height       : 34px;
+  margin       : 0;
+  border       : none;
+  border-radius: 50%;
+  font-size    : 14px;
+  text-align   : center;
+  line-height  : 1.4;
+  @include background-linear-gradient();
+  @include border-linear-gradient();
+}
+
+.g-ibtn-cropper {
+  @include on-event() {
+    outline: none;
+  }
+  width        : 30px;
+  height       : 30px;
+  border-radius: 5px;
+  border       : none;
+  @include background-linear-gradient();
+  @include border-linear-gradient();
+
+  i {
+    width    : 15px;
+    height   : 15px;
+    font-size: 15px;
+    color    : $white;
+  }
+}
+
+.g-btn__image-upload {
+  @include on-hover() {
+    background-color: $blue-gray;
+    color           : $white;
+  };
+  width        : 130px;
+  height       : 40px;
+  border-radius: 4px;
+  border       : solid 2px $blue-gray;
+  margin-top   : 15px;
+  background   : transparent;
+  color        : $blue-gray;
+  font-size    : 14px;
+}

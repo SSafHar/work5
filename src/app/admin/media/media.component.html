@@ -1,0 +1,50 @@
+<loaders-css *ngIf="busy" [loader]="'square-spin'"></loaders-css>
+<div class="g-admin__media g-main">
+  <div class="container">
+    <movie-modal *ngIf="toggleModal" [movie]='selectedMovie' [categories]="filters" [search_tags]="search_tags" (close)="modalChanges($event)"></movie-modal>
+
+    <div class="row g-admin__filters">
+      <div class="col col-sm-3 col-xs-4">
+        <div class="g-input">
+          <input type="text" name="year" min="0" [max]="currentYear" placeholder="Year Released" (input)="changeYearReleased(yearReleased.value)" #yearReleased/>
+        </div>
+      </div>
+      <div class="col g-btn-wrapper">
+        <p>Clear Filters</p>
+        <button class="g-ibtn" type="button" name="button" (click)="clearFilters();q.value='';yearReleased.value=''"><i class="icon-cancel"></i></button>
+      </div>
+      <div class="col text-right g-admin__filters--movieUpload">
+        <button class="g-btn-default__default-thick--fill" type="button" name="button" (click)="toggleModal = true">
+          <span>Upload New Movie</span>
+          <i class="icon-longRightArrow"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="row g-table__head">
+      <h5 class="col">MOVIE ID</h5>
+      <h5 class="col">TITLE</h5>
+      <h5 class="col">GENRES</h5>
+      <h5 class="col">DURATION</h5>
+      <h5 class="col">DATE ADDED</h5>
+      <h5 class="col">YEAR RELEASED</h5>
+      <div class="g-table__head--settings"></div>
+    </div>
+    <div class="row g-table__item" *ngFor="let movie of movies">
+      <p class="col">{{movie.id}}</p>
+      <p class="col">{{movie.name}}</p>
+      <p class="col">{{movie.categories[0].name}}</p>
+      <p class="col">{{movie.runtime}}</p>
+      <p class="col">{{movie.created*1000 | date: 'M/d/yyyy'}}</p>
+      <p class="col">{{movie.year}}</p>
+      <div class="g-table__item--settings">
+        <i class="icon-settings"></i>
+        <div class="g-table__item--settings__list">
+          <p (click)="editMovie(movie)">Edit</p>
+          <p (click)="deleteMovie(movie.id)">Delete</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <paginator *ngIf="paginator && movies" [paginator]="paginator" (change)="changePage($event)"></paginator>
+</div>

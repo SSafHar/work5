@@ -1,0 +1,52 @@
+<loaders-css *ngIf="busy" [loader]="'square-spin'"></loaders-css>
+<div class="g-admin g-main">
+  <div class="container">
+    <action-modal *ngIf="toggleModal"></action-modal>
+    <div class="row g-admin__filters">
+      <div class="col-3">
+        <div class="g-input">
+          <datepicker theme='light' label="From" field="start_date" (updatedValue)="changeSubscriptionFrom($event)" [model]="dateFrom" ></datepicker>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="g-input">
+          <datepicker theme='light' label="To" field="end_date" (updatedValue)="changeSubscriptionTo($event)" [options]="datepickerOptions" [model]="dateTo" ></datepicker>
+        </div>
+      </div>
+      <div class="col-3">
+        <dropdown label="Membership Type" [data]="membership" (change)="changeMembership($event)" [plans]="true" #mem></dropdown>
+      </div>
+      <div class="col g-btn-wrapper">
+        <p>Clear Filters</p>
+        <button class="g-ibtn" type="button" name="button" (click)="clearFilters(); mem.selectedValue = null; dateFrom = null; dateTo = null;"><i class="icon-cancel"></i></button>
+      </div>
+    </div>
+    <div class="row g-table__head">
+      <h5 class="col">MEMBER ID</h5>
+      <h5 class="col">NAME</h5>
+      <h5 class="col">EMAIL</h5>
+      <h5 class="col">REGISTRATION DATE</h5>
+      <h5 class="col">SUBSCRIPTION</h5>
+      <h5 class="col">MEMBERSHIP TYPE</h5>
+      <h5 class="col">EXPIRATION</h5>
+      <div class="g-table__head--settings"></div>
+    </div>
+    <div class="row g-table__item" *ngFor="let user of enabledUsers; index as i; trackBy: trackByFn">
+      <p class="col">{{user.id}}</p>
+      <p class="col">{{user.name}}</p>
+      <p class="col">{{user.email}}</p>
+      <p class="col">{{user.created*1000 | date: 'M/d/yyyy'}}</p>
+      <p class="col">{{(user.subscription_started*1000 | date: 'M/d/yyyy') || '-'}}</p>
+      <p class="col">{{user.subscription ? user.subscription.name : '-'}}</p>
+      <p class="col">{{user.subscription_expires*1000 | date: 'M/d/yyyy' || '-'}}</p>
+      <div class="g-table__item--settings">
+        <i class="icon-settings"></i>
+        <div class="g-table__item--settings__list">
+          <!-- <p (click)="cancelMembership(user.id)">Cancel Membership</p> -->
+          <p (click)="deactivateUser(user.id)">Delete</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <paginator *ngIf="paginator && enabledUsers" [paginator]="paginator" (change)="changePage($event)"></paginator>
+</div>

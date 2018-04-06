@@ -1,0 +1,23 @@
+.tags {
+  height: auto !important;
+}
+.ng2-tag-input {
+  border: none !important;
+  &--focused {
+    border: none !important;
+  }
+}
+.ng2-tags-container {
+  background-color: $charcoal-grey;
+  color: $light-blue-gray;
+  border-radius: 3px;
+  padding: 10px;
+  tag {
+    letter-spacing: 0 !important;
+    background: $light-blue-gray !important;
+    padding: 0px 8px !important;
+    color: $charcoal-grey !important;
+    margin: 3px 4px !important;
+  }
+}
+

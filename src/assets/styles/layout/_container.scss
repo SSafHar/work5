@@ -1,0 +1,63 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the modal-like mini containers
+// -----------------------------------------------------------------------------
+.g-main {
+  @include respond-to(xs) {
+    margin-left: 0;
+  }
+  @include respond-to(md) {
+    margin-left: 90px;
+  }
+  min-width            : calc(100% - 90px);
+  min-height           : calc(100vh - 70px);
+  padding-bottom       : 50px;
+  margin-top           : 70px;
+  background           : $light-gray url('../img/Background_image.png') no-repeat;
+  background-attachment: fixed;
+  background-position  : 70px 90px;
+  background-size      : calc(100% - 70px) calc(100% - 90px);
+  @include flexbox(center, center, column);
+}
+
+// -----------------------------------------------------------------------------
+// This this style related for main class in admin side
+// -----------------------------------------------------------------------------
+
+%g-container {
+  position        : relative;
+  display         : inline-block;
+  border-radius   : 4px;
+  margin          : 100px 0 auto;
+  background-color: $dark-gray;
+  text-align      : left;
+  @include shadow(0, 10, 40, 0, $black, 0.2);
+
+  > img,
+  > form img {
+    position: absolute;
+    top     : -65px;
+    left    : 0;
+    right   : 0;
+    margin  : auto;
+  }
+}
+
+.g-container-sm {
+  max-width: 473px;
+  @extend %g-container;
+}
+
+.g-container-md {
+  max-width : 767px;
+  width     : 100%;
+  padding   : 20px 40px;
+  margin-top: 50px;
+  @extend %g-container;
+}
+
+.g-container-lg {
+  max-width: 937px;
+  width    : 100%;
+  padding  : 32px 36px;
+  @extend %g-container;
+}

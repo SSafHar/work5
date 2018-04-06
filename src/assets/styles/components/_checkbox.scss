@@ -1,0 +1,61 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the checkbox components.
+// -----------------------------------------------------------------------------
+
+////
+/// This is a group comment will create a new sidebar item in sassdoc.
+/// @group Checbkoxes
+
+.g-checkbox {
+  position: relative;
+  float: left;
+  height: 12px;
+  margin: 8px 0;
+  input {
+    display: none;
+    &:checked + label i {
+      &:before {
+        content: 'v';
+      }
+    }
+  }
+  label{
+    i{
+      position: absolute;
+      z-index: 1;
+      top: 3px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+      background: $charcoal-grey;
+      cursor: pointer;
+      &:before{
+        content: '';
+        position: absolute;
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        top: 2px;
+        left: 2px;
+        text-align: center;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: normal;
+        line-height: 1;
+        speak: none;
+        text-transform: none;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding-left: 30px;
+    border-radius: 20px;
+    color: $white;
+    line-height: 2.3;
+    font-size: 12px;
+    cursor: pointer;
+  }
+}

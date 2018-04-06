@@ -1,0 +1,92 @@
+.b-payment {
+  height: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.5s;
+
+  &.active {
+    height    : auto;
+    max-height: 700px;
+    overflow  : visible;
+    transition: 0.5s;
+  }
+
+  h1 {
+    display: inline-block;
+    float: left;
+    padding: 15px 0;
+  }
+
+  h3 {
+    text-align: left;
+    padding: 25px 0;
+    border-top: solid 1px $white;
+    border-bottom: solid 1px $white;
+
+    span {
+      float: right;
+    }
+  }
+
+  p {
+    margin-bottom: 5px;
+    text-align: left;
+    color: $white;
+  }
+
+  &-item p {
+    padding: 10px;
+    color: $blue-gray;
+
+  }
+
+  .g-input {
+    width: 100%;
+  }
+  .g-input--dropdown input {
+    height: auto;
+  }
+  dropdown {
+    text-align: left;
+    @include respond-to(xs) {
+      margin-bottom: 12px;
+    }
+
+    input {
+      height: auto;
+      text-align: left;
+    }
+    @include on-event() {
+      .g-dropdown__body {
+        height: auto;
+      }
+    }
+
+    .g-dropdown__body-item {
+      span {
+        padding-left: 10px;
+      }
+    }
+  }
+
+  .g-btn-green__default-default--hollow {
+    @include respond-to(xs) {
+      float: none;
+    }
+    @include respond-to(sm) {
+      float: left;
+    }
+    margin: 10px 0;
+  }
+
+  .g-btn-red__default-default--hollow {
+    @include respond-to(xs) {
+      float: none;
+    }
+    @include respond-to(sm) {
+      float: right;
+    }
+    margin: 10px 0;
+  }
+
+}

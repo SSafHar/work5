@@ -1,0 +1,42 @@
+<div class="g-nav__search--mobile">
+  <i class="icon-search"></i>
+  <autocomplete-dropdown [adminStyle]="false" [placeholder]="'Search for movies'"></autocomplete-dropdown>
+</div>
+
+<div class="sidebar-block" *ngIf="isAdmin">
+  <a routerLinkActive="active" routerLink='/admin/home' [routerLinkActiveOptions]="{exact: true}">
+    <i class="icon-home"></i>
+    <p>home</p>
+  </a>
+  <a routerLinkActive="active" routerLink='/admin/users' [routerLinkActiveOptions]="{exact: true}">
+    <i class="icon-communicate"></i>
+    <p>Users</p>
+  </a>
+  <a routerLinkActive="active" routerLink='/admin/media' [routerLinkActiveOptions]="{exact: true}">
+    <i class="icon-playlist"></i>
+    <p>media</p>
+  </a>
+</div>
+
+<div class="sidebar-block" *ngIf="!isAdmin">
+  <a routerLinkActive="active" routerLink='/home' [routerLinkActiveOptions]="{exact: true}">
+    <i class="icon-home"></i>
+    <p>home</p>
+  </a>
+  <a routerLinkActive="active" routerLink='/movies' [routerLinkActiveOptions]="{exact: true}">
+    <i class="icon-play"></i>
+    <p>Movies</p>
+  </a>
+  <a routerLinkActive="active" routerLink='/premium' [routerLinkActiveOptions]="{exact: true}">
+    <i class="icon-premium"></i>
+    <p>Premium</p>
+  </a>
+  <a routerLinkActive="active" [routerLink]="['/contact']" [routerLinkActiveOptions]="{exact: true}">
+    <i class="icon-contact"></i>
+    <p>Contact</p>
+  </a>
+  <a routerLinkActive="active" [routerLink]="['/faq']" [routerLinkActiveOptions]="{exact: true}">
+    <i class="icon-faq"></i>
+    <p>FAQ</p>
+  </a>
+</div>

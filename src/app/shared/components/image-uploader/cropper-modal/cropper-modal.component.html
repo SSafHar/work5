@@ -1,0 +1,19 @@
+<div class="g-modal">
+  <div class="g-modal__container">
+    <div class="g-modal__container-head">
+      <button class="g-ibtn" type="button" (click)='close(false)'>
+        <i class="icon-cancel"></i>
+      </button>
+      <h2 class="col-12">Crop Image</h2>
+    </div>
+    <div class="g-modal__container-body">
+      <div class="g-modal_cropper">
+        <img #cropper [src]="img">
+      </div>
+      <div class="col-12 mt-4 mb-4">
+        <button type='button' class="g-btn-default__default-default--fill mr-3" (click)="close(false)">Cancel</button>
+        <button type='button' class="g-btn-default__default-default--fill" (click)="crop()">Crop</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+//
+@font-face{
+    font-family: 'odeon-icons';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/assets/fonts/icon-fonts/odeon-icons.woff2') format('woff2'), url('/assets/fonts/icon-fonts/odeon-icons.woff') format('woff'), url('/assets/fonts/icon-fonts/odeon-icons.ttf') format('truetype');
+}
+
+
+%icon{
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-family: 'odeon-icons';
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    speak: none;
+    text-transform: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$icon_list: (
+    add: "\EA01", cancel: "\EA02", communicate: "\EA03", contact: "\EA04", crop: "\EA05", dash: "\EA06", downArrow: "\EA07", faq: "\EA08", filter: "\EA09", home: "\EA0A", leftArrow: "\EA0B", login: "\EA0C", longRightArrow: "\EA0D", play: "\EA0E", playlist: "\EA0F", premium: "\EA10", rightArrow: "\EA11", search: "\EA12", settings: "\EA13", skin: "\EA14", sub: "\EA15", trash: "\EA16", upArrow: "\EA17", 
+);
+
+@each $name, $glyph_code in $icon_list{
+    .icon-#{$name}{
+        position: relative;
+        display: inline-block;
+        &:before{
+            @extend %icon;
+            content: $glyph_code;
+        }
+    }
+}

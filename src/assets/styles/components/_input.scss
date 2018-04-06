@@ -1,0 +1,100 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the input components.
+// -----------------------------------------------------------------------------
+
+.g-input {
+  width: 100%;
+  height: 55px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+  input {
+    @include on-active() {
+      outline: none;
+    }
+    width: 100%;
+    height: 100%;
+    padding: 20px 10px;
+    background-color: $white;
+    border: none;
+    border-radius: 4px;
+    color: $blue-gray;
+    font-size: 14px;
+    font-family: $font-lato;
+    &::placeholder {
+      color: $blue-gray;
+    }
+  }
+
+  &.invalid {
+    border: 4px solid $red;
+
+    input {
+      border-radius: 0;
+    }
+  }
+
+  &.empty {
+    border: none;
+    border-radius: 4px;
+  }
+  &:required:empty {
+    border: 4px solid $red;
+  }
+}
+
+.g-input--navbar-search {
+  @extend .g-input;
+  display: inline-block;
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  background-color: $charcoal-grey;
+  color: $light-blue-gray;
+  &::placeholder {
+    color: $light-blue-gray;
+  }
+
+}
+
+.g-input--dark {
+  @extend .g-input;
+  height: 40px !important;
+  width: 100%;
+  input {
+    background-color: $charcoal-grey;
+    color: $light-blue-gray;
+  }
+}
+
+.g-input--gray {
+  @extend .g-input;
+  height: 30px !important;
+  width: 100%;
+  padding-top: 5px;
+  input {
+    padding: 2px 28px;
+    background-color: $light-blue-gray;
+    &::placeholder {
+      color: $light-gray;
+    }
+  }
+}
+
+.g-input--dropdown {
+  @extend .g-input;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  height: 40px !important;
+  width: 100%;
+  input {
+    text-align: center;
+    border: solid 1px $white-gray;
+  }
+}
+
+// --------------------------------
+// ----------Range styles----------
+// --------------------------------

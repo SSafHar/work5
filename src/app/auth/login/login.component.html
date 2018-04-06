@@ -1,0 +1,32 @@
+<loaders-css *ngIf="busy" [loader]="'square-spin'"></loaders-css>
+
+<div class="p-auth g-main">
+  <!--Login Form-->
+  <form class="p-auth-login g-container-sm" *ngIf="view==='login'" id="SignIn" #loginForm="ngForm" (onSubmit)="tryToLogin()" novalidate>
+    <img src="/assets/icon/logo/odeon_full_light.png" alt="logo">
+    <h1>Sign In To Your Account</h1>
+    <div class="g-input" [ngClass]="statusClass(login)">
+      <input type="email" placeholder="Your email..." name="login" #login="ngModel" id="login" [(ngModel)]="userFormLogin.login" required="true" />
+    </div>
+    <div class="g-input">
+      <input type="password" placeholder="Password" name="password" #password="ngModel" id="password" [(ngModel)]="userFormLogin.password" required="true">
+    </div>
+    <a href="javascript:;" (click)="view='forgot'">Forgot Password?</a>
+    <p>Don’t have an account ? Create one
+      <a [routerLink]="['/signup']">here.</a>
+    </p>
+    <button class="g-btn-default__default-default--fill" [disabled]='false' (click)='tryToLogin()' type="submit">Sign in</button>
+  </form>
+
+  <!--Forgot Password Form-->
+  <form class="p-auth-forgot g-container-sm" *ngIf="view==='forgot'" (onSubmit)="resetPassword()">
+    <img src="/assets/icon/logo/odeon_full_light.png" alt="logo">
+    <h1>Oops…reset my password</h1>
+    <div class="g-input" *ngIf="!formSubmitted">
+      <input type="email" id="email" [(ngModel)]="resetEmail" name="email" required="true" email placeholder="Your Email...">
+    </div>
+    <button class="g-btn-default__default-default--fill" (click)='resetPassword()' [disabled]="false">Send Reset Pass Email</button>
+    <p>Don’t have an account ? Create one <span><a routerLink='/signup'>here.</a></span></p>
+  </form>
+
+</div>

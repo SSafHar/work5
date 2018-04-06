@@ -1,0 +1,10 @@
+<loaders-css *ngIf="busy" [loader]="'square-spin'"></loaders-css>
+<div class="p-faq g-main">
+  <div class="g-container-md">
+    <h1>FAQ</h1>
+    <div *ngFor="let question of faq">
+      <h2>{{question.question}}</h2>
+      <h3 [innerHtml]="question.answer"></h3>
+    </div>
+  </div>
+</div>

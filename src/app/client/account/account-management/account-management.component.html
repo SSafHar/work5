@@ -1,0 +1,24 @@
+<loaders-css *ngIf="busy" [loader]="'square-spin'"></loaders-css>
+<!--Account update-->
+<div class="row p-account__profile">
+  <div class="col-12">
+    <form id="accountUpdate" #updateForm="ngForm" (onSubmit)="updateUser()" novalidate>
+      <div class="row justify-content-center">
+        <div class="p-account__profile-upload">
+          <image-uploader theme='user' [options]="ImageUploaderOptions" placeholder="Upload Picture" (filesUpdated)="user.image = $event" [files]="user.id ? user.image?.url : ''"></image-uploader>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-8 col-xs-6 p-account__profile-items">
+          <div class="g-input">
+            <input type="text" placeholder="Name" [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="g-input">
+            <input type="email" placeholder="Email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-12">
+    <button class="g-btn-default__default-default--fill" type="submit" name="button" (click)="updateUser()">Save Changes</button>
+  </div>
+</div>

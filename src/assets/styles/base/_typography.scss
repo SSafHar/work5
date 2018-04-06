@@ -1,0 +1,77 @@
+// -----------------------------------------------------------------------------
+// This file contains typography styles.
+// -----------------------------------------------------------------------------
+
+////
+/// This is a group comment will create a new sidebar item in sassdoc.
+/// @group Fonts
+////
+
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+p {
+  margin: 0;
+}
+
+/// Titles
+h1 {
+  font-size: 30px;
+  font-family: $font-lato;
+  font-weight: 300;
+  color: $white;
+}
+
+/// Subtitles
+h2 {
+  font-size: 22px;
+  font-family: $font-lato;
+  font-weight: 300;
+  color: $white;
+}
+
+/// Movie names
+h3 {
+  font-size: 16px;
+  font-family: $font-lato;
+  font-weight: 400;
+  color: $white;
+}
+
+/// Movie meta items
+h5 {
+  font-size: 12px;
+  font-family: $font-lato;
+  font-weight: 400;
+  color: $white;
+}
+
+/// Movie meta items
+h6 {
+  font-size: 11px;
+  font-family: $font-lato;
+  font-weight: 400;
+  color: $white;
+}
+
+/// Body, subtext
+p {
+  font-size: 14px;
+  font-family: $font-lato;
+  font-weight: 400;
+  color: $blue-gray;
+}
+
+/// Menu items
+a {
+  font-size: 16px;
+  font-family: $font-lato;
+  font-weight: 400;
+  color: $blue;
+}

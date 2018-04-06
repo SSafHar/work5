@@ -1,0 +1,48 @@
+%general-uploader-styles{
+  @include flexbox(center,center,column);;
+  width: 100%;
+  border: 3px dashed #4a4a4a;
+  background: transparent;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: 0.4s;
+  input{
+    display: none;
+  }
+  &:hover{
+      cursor: pointer;
+      border-color: $blue;
+      transition: 0.4s;
+  }
+  .g-image-uploader_view{
+      @include flexbox(center,flex-end);
+      width: 100%;
+      height: 100%;
+      padding: 15px;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      button{
+          border: 1px solid #4a4a4a;
+      }
+  }
+}
+
+.g-image-uploader{
+
+  &__list{
+    height: 255px;
+    @extend %general-uploader-styles;
+  }
+  &__cover{
+    height: 300px;
+    @extend %general-uploader-styles;
+  }
+  &__user{
+    height: 130px;
+    @extend %general-uploader-styles;
+  }
+}
+
+//Cropper design

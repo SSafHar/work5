@@ -1,0 +1,23 @@
+<div class="row mt-4 mb-4 align-items-center b-settings_user_pagination g-paginator" *ngIf="paginator.totalCount">
+  <div class="col">
+    <button class="g-btn-default__default-default--fill arrow-left" type="button"
+            *ngIf="paginator.previous" (click)="changePage(paginator.previous)" name="button">
+      <i class="icon-leftArrow"></i>
+    </button>
+  </div>
+  <div class="col text-center" *ngFor="let page of pages">
+    <button type="button" *ngIf="page !== dots; else dotsTpl"
+            class='g-btn-default__default-default--fill'
+            [class.selected]="page === paginator.current"
+            (click)="changePage(page)">{{page}}</button>
+    <ng-template #dotsTpl>
+      <p>{{dots}}</p>
+    </ng-template>
+  </div>
+  <div class="col text-right">
+    <button class="g-btn-default__default-default--fill arrow-right" type="button"
+            *ngIf="paginator.next" (click)='changePage(paginator.next)' name="button">
+      <i class="icon-rightArrow"></i>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,138 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the input components.
+// -----------------------------------------------------------------------------
+
+////
+/// This is a group comment will create a new sidebar item in sassdoc.
+/// @group Tables
+
+.g-table {
+  &__head {
+    .col {
+      @include respond-to(xs) {
+        display: none;
+      }
+      &:nth-child(1), &:nth-child(2) {
+        @include respond-to(xs) {
+          display: inline-block;
+        }
+      }
+      &:nth-child(1), &:nth-child(2) {
+        @include respond-to(md) {
+          display: inline-block;
+        }
+      }
+      @include respond-to(md) {
+        display: inline-block;
+      }
+    }
+    height: 100%;
+    min-height: 50px;
+    border-radius: 2px;
+    background-color: $blue-gray;
+    color: $white;
+    text-transform: uppercase;
+
+    h5 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      line-height: 4.2;
+    }
+    &--settings {
+      @include respond-to(xs) {
+        display: inline-block;
+      }
+      @include respond-to(md) {
+        display: inline-block;
+      }
+      width: 30px;
+    }
+  }
+  &__item {
+    height: 100%;
+    min-height: 50px;
+    border-radius: 2px;
+    margin-top: 10px;
+    background-color: $mid-gray;
+    color: $white;
+    @include flexbox();
+    .col {
+      @include respond-to(xs) {
+        display: none;
+      }
+      &:nth-child(1), &:nth-child(2) {
+        @include respond-to(xs) {
+          display: inline-block;
+        }
+      }
+      &:nth-child(1), &:nth-child(2) {
+        @include respond-to(md) {
+          display: inline-block;
+        }
+      }
+      @include respond-to(md) {
+        display: inline-block;
+      }
+    }
+
+    p {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      line-height: 4.2;
+      color: $white;
+    }
+    &--settings {
+      @include on-event() {
+        div {
+          display: block;
+        }
+      }
+      @include respond-to(xs) {
+        display: inline-block;
+      }
+      @include respond-to(md) {
+        display: inline-block;
+      }
+      position: relative;
+      width: 30px;
+      height: 50px;
+      i {
+        font-size: 16px;
+      }
+      div {
+        position: absolute;
+        top: -25px;
+        right: 42px;
+        display: none;
+        width: 178px;
+        height: 100px;
+        padding: 22px 0;
+        background-color: $charcoal-grey;
+        border-radius: 4px;
+        border: 0.5px solid $blue-gray;
+        &:before {
+          position: absolute;
+          top: 40px;
+          right: -11px;
+          content: " ";
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 10px 0 10px 10px;
+          border-color: transparent transparent transparent $charcoal-grey;
+        }
+        p {
+          @include on-event() {
+            width: 100%;
+            background: $blue;
+          }
+          width: 178px;
+          line-height: 2;
+          padding: 0 20px;
+        }
+      }
+    }
+  }
+}

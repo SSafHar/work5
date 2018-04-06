@@ -1,0 +1,12 @@
+<input class="g-input--navbar-search" (clickOutside)='toggleAutocomplete = false' (click)='toggleAutocomplete = true' type="search" placeholder="Search for movies…" (input)="autocompleteQuery($event.target.value)" #q>
+<i class="icon-cancel" (click)="q.value = ''; moviesAutocomplete = null" *ngIf="adminStyle === false && q.value"></i>
+
+<div class="autocomplete-dropdown" [class.active]='toggleAutocomplete'>
+  <a class="autocomplete-dropdown__item" *ngFor="let movie of moviesAutocomplete; index as i; trackBy: trackByFn" [routerLink]="['/movie', movie.id]" (click)="q.value = ''">
+    <img [image]="movie.list_image.url" size="small">
+    <div>
+      <h3>{{movie.name}}</h3>
+      <h5>{{movie.year}}</h5>
+    </div>
+  </a>
+</div>

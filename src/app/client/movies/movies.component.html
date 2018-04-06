@@ -1,0 +1,38 @@
+<loaders-css *ngIf="busy" [loader]="'square-spin'"></loaders-css>
+<div class="p-movies g-main">
+  <div class="container">
+    <div class="row p-movies__banner">
+      <div class="col-xl-4 col-lg-5 col-md-6 col-12 p-movies__banner--sort">
+        <span>Sort</span>
+        <div>
+          <button class="g-btn-default__sm-thick--hollow" [class.active]='view.sortBy === sortBy.name' *ngFor="let sortBy of sort_by; index as i; trackBy: trackByFn" name="button" (click)="sortByChange(sortBy.id); view.sortBy = sortBy.name">{{sortBy.name}}</button>
+        </div>
+      </div>
+      <div class="col-xl col-lg-7 col-sm-6 p-movies__banner--imdb">
+        <span>IMDB Minimum</span>
+        <nouislider (start)="return" [min]="0" [max]="10" [connect]="[true,false]" [(ngModel)]="imdb_min" (click)="setImdbMin(imdb_min)"></nouislider>
+        <span>{{imdb_min | number:'.0-1'}}</span>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-sm-6">
+        <span>Page Order</span>
+        <button class="g-btn-default__xs-thick--hollow" [class.active]='view.sortType === sortType.name' *ngFor="let sortType of sort_type; index as i; trackBy: trackByFn" name="button" (click)="sortTypeChange(sortType.id); view.sortType = sortType.name">{{sortType.name}}</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-2 col-lg-3 col-md-4 col-6" *ngFor='let movie of movies; index as i; trackBy: trackByFn'>
+        <div class="g-movie-card">
+          <a class="g-movie-card__movie" [routerLink]="['/movie/'+movie.id]">
+            <img [image]="movie.cover_image.url">
+            <div class="g-movie-card__movie-play">
+              <i class="icon-play"></i>
+              <h3>PLAY</h3>
+            </div>
+          </a>
+          <h3>{{movie.name}}</h3>
+          <p *ngIf="movie.imdb"><span>iMDb</span>{{movie.imdb}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <paginator *ngIf="paginator && movies" [paginator]="paginator" (change)="changePage($event)"></paginator>
+</div>

@@ -1,0 +1,124 @@
+<loaders-css *ngIf="busy" [loader]="'square-spin'"></loaders-css>
+<div class="g-modal">
+  <div class="g-modal__container">
+    <div class="g-modal__container-head">
+      <h1>{{!movie.id ? 'Add New Movie' : 'Edit movie'}}</h1>
+      <button class="g-ibtn" type="button" (click)='closeModal()'>
+        <i class="icon-cancel"></i>
+      </button>
+    </div>
+    <form class="g-modal__container-body" #movieUpdateForm="ngForm" novalidate>
+      <div class="row">
+        <div class="col-12 mb-3">
+          <image-uploader class="w-100" theme='cover' [options]="coverUploaderOptions" placeholder="Upload Cover Image" (filesUpdated)="movie.cover_image =$event" [files]="movie.id ? movie.cover_image.url : ''"></image-uploader>
+        </div>
+        <div class="col-4">
+          <image-uploader class="w-100" theme='list' [options]="listUploaderOptions" placeholder="Upload List Image" (filesUpdated)="movie.list_image =$event" [files]="movie.id ? movie.list_image.url : ''"></image-uploader>
+        </div>
+        <div class="col-8">
+          <div class="row">
+            <div class="col-12">
+              <p>Content Type:</p>
+              <div class="g-checkbox mr-3">
+                <input id="type1" type='checkbox' [checked]="movie.type === 'movie'" (click)="changeMovieType('movie')">
+                <label for="type1"><i class="icon-checkmark"></i>Movie</label>
+              </div>
+              <div class="g-checkbox">
+                <input id="type2" type='checkbox' [checked]="movie.type === 'tvShow'" (click)="changeMovieType('tvShow')" >
+                <label for="type2"><i class="icon-checkmark"></i>Tv Show</label>
+              </div>
+            </div>
+            <div class="col g-modal__container-body--title">
+              <label for='name'>Title/IMDB id:</label>
+              <div class="g-input--dark">
+                <input type="search" #name="ngModel" id="name" name="name" required="true" [(ngModel)]="movie.name" (keyup.enter)="getFromImdb(movie.name)">
+              </div>
+              <button class="g-btn-default__auto-thick--fill m-0" (click)="getFromImdb(movie.name)">Search in Imdb</button>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-6">
+              <label for='imdb'>IMDB:</label>
+              <div class="g-input--dark">
+                <input type="number" [(ngModel)]="movie.imdb_rating" #imdb='ngModel' id="imdb" name="imdb">
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="rating">Rating:</label>
+              <div class="g-input--dark">
+                <input type="text" [(ngModel)]='movie.rating' #rating='ngModel' id="rating" name="rating">
+              </div>
+            </div>
+            <div class="col-6">
+              <label for='runtime'>Runtime:</label>
+              <div class="g-input--dark">
+                <input type="number" [(ngModel)]='movie.runtime' #runtime='ngModel' id="runtime" name="runtime" required='true'>
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="year">Year:</label>
+              <div class="g-input--dark">
+                <input type="number" [(ngModel)]='movie.year' #year='ngModel' id="year" name="year" required='true'>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-container *ngIf="movie.type === 'tvShow'">
+          <div class="col-6">
+            <label for='season'>Season:</label>
+            <div class="g-input--dark">
+              <input type="number" [(ngModel)]='movie.season' #season='ngModel' id="season" name="season">
+            </div>
+          </div>
+          <div class="col-6">
+            <label for='episode'>Episode:</label>
+            <div class="g-input--dark">
+              <input type="number" [(ngModel)]='movie.episode' #episode='ngModel' id="episode" name="episode">
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="col-6">
+          <label>Genre:</label>
+          <div class="g-input--dark tags">
+            <tags placeholder="Genre" [allowedTags]="categories" (changed)="filters = $event" [allowCustom]="false" [selectedItems]="movie.categories"></tags>
+          </div>
+        </div>
+        <div class="col-6">
+          <label>Search Tags:</label>
+          <div class="g-input--dark tags">
+            <tags placeholder="Search" [allowedTags]="search_tags" (changed)="searchTags = $event" [allowCustom]='true' [selectedItems]="movie.search_tags"></tags>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="description">Storyline:</label>
+          <div class="g-textarea--dark">
+            <textarea [(ngModel)]='movie.description' #description='ngModel' id="description" name="description" required='true'></textarea>
+          </div>
+        </div>
+        <div class="col-6">
+          <label class="director">Director:</label>
+          <div class="g-input--dark">
+            <input type="text" [(ngModel)]='movie.director' #director='ngModel' id="director" name="director">
+          </div>
+        </div>
+        <div class="col-6">
+          <label class="video">Video Url:</label>
+          <div class="g-input--dark">
+            <input type="text" [(ngModel)]='movie.video_url' #video='ngModel' id="video" name="video" required='true'>
+          </div>
+        </div>
+        <div class="col-12">
+          <label class="actors">Actors:</label>
+          <div class="g-input--dark tags">
+            <tags placeholder="Actors" (changed)="actors = $event" [allowCustom]='true' [selectedItems]="movie.actors"></tags>
+          </div>
+        </div>
+
+        <div class="col-4 offset-4">
+          <button class="g-btn-green__full-normal--hollow" (click)="updateMovie()" type="button">{{ movie.id ? 'EDIT MOVIE' : 'UPLOAD MOVIE'}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

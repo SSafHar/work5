@@ -1,0 +1,48 @@
+.g-paginator {
+  padding: 50px;
+
+  > div {
+    width  : auto;
+    height : auto;
+    margin : 0;
+    padding: 0 3px;
+
+    button,
+    p {
+      width     : 28px;
+      height    : 38px;
+      margin    : 0;
+      padding   : 0;
+      background: none;
+      color     : $white;
+      text-align: center;
+
+      i {
+        width    : 14px;
+        height   : 14px;
+        font-size: 14px;
+        color    : $white;
+      }
+    }
+
+    button {
+      @include on-event() {
+        border: none;
+        @include background-linear-gradient();
+      }
+      background: transparent !important;
+
+      &.selected {
+        @include background-linear-gradient();
+      }
+    }
+
+    &:first-child,
+    &:last-child {
+      button {
+        border: none;
+        @include background-linear-gradient();
+      }
+    }
+  }
+}

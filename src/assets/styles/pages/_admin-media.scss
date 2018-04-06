@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the admin panel's movies page.
+// -----------------------------------------------------------------------------
+
+.g-admin__media {
+  justify-content: flex-start;
+  padding: 0 10px 40px 10px;
+    .g-input {
+      display: inline-block;
+      float: left;
+      height: 100%;
+    }
+  }

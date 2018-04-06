@@ -1,0 +1,44 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the contact page.
+// -----------------------------------------------------------------------------
+
+.p-contact {
+  padding: 50px 15px;
+
+  .g-container-md {
+    .row {
+      @include respond-to(xs) {
+        text-align: center;
+      }
+      @include respond-to(md) {
+        text-align: left;
+      }
+      position: relative;
+
+      h1 {
+        margin-bottom: 26px;
+      }
+    }
+  }
+
+  &__notification {
+    @include respond-to(xs) {
+      padding: 15px;
+    }
+    @include respond-to(md) {
+      padding: 15px;
+    }
+    @include respond-to(md) {
+      padding: 15px 90px;
+    }
+    height          : 100%;
+    margin          : 10px;
+    border-radius   : 4px;
+    background-color: $mid-gray;
+    text-align      : center;
+
+    p {
+      color: $white;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+@import 'abstracts/variables';
+@import 'abstracts/placeholders';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+// 2. Base stuff
+@import 'base/animations';
+@import 'base/base';
+@import 'base/icons';
+@import 'base/colors';
+@import 'base/fonts';
+@import 'base/helpers';
+@import 'base/media-query';
+@import 'base/shame';
+@import 'base/typography';
+
+// 3. Vendors
+@import 'vendor/normalize';
+@import 'vendor/flowplayer';
+@import 'vendor/bootstrap/bootstrap-grid';
+@import 'vendor/toastr';
+@import 'vendor/slider';
+@import 'vendor/cropper';
+@import 'vendor/loader';
+
+// 4. Components
+@import 'components/button';
+@import 'components/checkbox';
+@import 'components/uploader';
+@import 'components/input';
+@import 'components/textarea';
+@import 'components/tags';
+@import 'components/meta-info';
+@import 'components/datePicker';
+@import 'components/movie-card';
+@import 'components/premium-card';
+@import 'components/profile-image';
+@import 'components/paginator';
+@import 'components/table';
+@import 'components/dropdown';
+
+// 5. Layout-related sections
+@import 'layout/container';
+@import 'layout/sidebar';
+@import 'layout/modal';
+@import 'layout/navbar';
+@import 'layout/filters';
+
+// 6. Page-specific styles
+@import 'pages/account';
+@import 'pages/admin-media';
+@import 'pages/admin-members';
+@import 'pages/auth';
+@import 'pages/contact';
+@import 'pages/faq';
+@import 'pages/home';
+@import 'pages/movies';
+@import 'pages/payment';
+@import 'pages/premium';
+@import 'pages/single-movie';
+
+// 7. Themes
+@import 'themes/default';
+@import "~nouislider/distribute/nouislider.min.css";
+@import "../../../node_modules/loaders.css/src/loaders";

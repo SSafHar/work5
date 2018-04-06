@@ -1,0 +1,128 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the authentication pages.
+// -----------------------------------------------------------------------------
+
+// This file contains styles that are specific to the login, forgot-pass, invalid pages.
+// -----------------------------------------------------------------------------
+.p-auth {
+    padding-left: 25px;
+    padding-right: 25px;
+  > img {
+    display: inline-block;
+    width: 135px;
+    margin: 30px 0;
+  }
+
+  &-signup {
+    @include respond-to(xs) {
+      padding: 50px 35px;
+    }
+    @include respond-to(md) {
+      padding: 50px 85px;
+    }
+    text-align: center;
+    h1,
+    p {
+      margin-bottom: 15px;
+    }
+
+    &__meta {
+      text-align: center;
+      padding: 0 25px;
+      margin: 25px 0 !important;
+    }
+  }
+
+  &-login {
+    @include respond-to(xs) {
+      padding: 50px 35px;
+    }
+    @include respond-to(md) {
+      padding: 50px 85px;
+    }
+    text-align: center;
+    h1 {
+      margin-bottom: 35px;
+    }
+
+    .g-input {
+      margin-bottom: 20px;
+    }
+
+    > a {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: $blue-gray !important;
+      text-align: left;
+      text-decoration: underline;
+    }
+
+    > p {
+      text-align: left;
+    }
+
+    button {
+      margin-top: 25px;
+    }
+  }
+
+  &-forgot {
+    @include respond-to(xs) {
+      padding: 50px 20px;
+    }
+    @include respond-to(md) {
+      padding: 50px 70px;
+    }
+    text-align: center;
+    .g-input,
+    button,
+    h1 {
+      margin-bottom: 35px;
+    }
+  }
+
+  &-valid {
+    padding: 50px 70px;
+    text-align: center;
+
+    h1,
+    p {
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    &__user {
+      margin: 15px 0 25px;
+
+      img {
+        display: inline-block;
+        height: 80px;
+        width: 80px;
+        border: 3px dashed #4a4a4a;
+        border-radius: 5px;
+        margin-right: 20px;
+      }
+
+      span {
+        text-align: left;
+
+        h3:last-child {
+          margin-top: 10px;
+          color: $blue-gray;
+        }
+      }
+      @include flexbox();
+    }
+
+    &__meta {
+      text-align: center;
+      padding: 0 25px;
+      margin: 25px 0 !important;
+    }
+  }
+}

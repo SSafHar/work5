@@ -1,0 +1,68 @@
+<loaders-css *ngIf="busy" [loader]="'square-spin'"></loaders-css>
+<div class="p-auth g-main">
+  <ng-container *ngIf="!user">
+    <div class="p-auth-signup g-container-md">
+      <form id="SignIn" #signUpForm="ngForm" (onSubmit)="tryToSignup()" novalidate>
+        <img src="/assets/icon/logo/odeon_full_light.png" alt="logo">
+        <h1>Create an Account</h1>
+        <p>It’s FREE to open an account! Be a part of our community, with a free account, you can check out our premium plans, donate to our cause of awesomeness and enjoy full access to our database.</p>
+        <p class="g-alert" *ngIf="">X Account already exists with this email, please reset password if you cannot login, or try again. </p>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="g-input">
+              <input type="text" placeholder="First Name" name="name" id="firstName" [(ngModel)]="userSignUpForm.firstName" required>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="g-input">
+              <input type="text" placeholder="Last name" name="name" id="lastName" [(ngModel)]="userSignUpForm.lastName" required>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="g-input">
+              <input type="text" placeholder="User Name" name="username" id="username" [(ngModel)]="userSignUpForm.username" required>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="g-input" [ngClass]="statusClass(email)">
+              <input type="email" placeholder="Email" [(ngModel)]="userSignUpForm.email" name="email" #email="ngModel" id="email" email required/>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="g-input">
+              <input type="password" id="password" placeholder="Create Password" [(ngModel)]="userSignUpForm.password" name="password" #password="ngModel" [ngClass]="statusClass(password)" required>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="g-input" [ngClass]="confirm_password.value !== password.value && (confirm_password.dirty || !confirm_password.touched) ? 'invalid': ''">
+              <input type="password" placeholder="Confirm Password" [(ngModel)]="userSignUpForm.confirm_password" name="confirm_password" #confirm_password="ngModel" required>
+            </div>
+          </div>
+        </div>
+        <p class="p-auth-signup__meta">Your account will give you access to view and sample our entire database but the content you are sampling will only pay for 20 minutes. Get your premium account today and share your account with friends!</p>
+        <button class="g-btn-default__default-default--fill" type="button" (click)="tryToSignup()">Create New Account</button>
+      </form>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="user">
+    <div class="p-auth-valid g-container-md">
+      <img src="/assets/icon/logo/odeon_full_light.png" alt="logo">
+      <h1>Thanks for joining the Odeon community !</h1>
+      <p>Check your email for your account verification link. Check out our premium packages by <span><a
+        href="/premium">clicking here</a></span> or pressing the button below.</p>
+      <h2>Welcome:</h2>
+      <div class="p-auth-valid__user">
+        <img [image]="user.image.url" size="small">
+        <span>
+          <h3>{{ user.name }}</h3>
+          <h3>{{ user.email }}</h3>
+        </span>
+      </div>
+      <p class="p-auth-valid__meta">Your account will give you access to view and sample our entire database but the content you are sampling will only play for 20 minutes. Get your premium account today and share your account with 3 friends! Update your profile pic in the account
+        section
+      </p>
+      <button class="g-btn-default__auto-default--fill" type="button" [routerLink]="['/premium']">CHECKOUT PREMIUM PLANS</button>
+      <button class="g-btn-default__default-default--fill" type="button" [routerLink]="['/movies']">WATCH MOVIES</button>
+    </div>
+  </ng-container>
+</div>

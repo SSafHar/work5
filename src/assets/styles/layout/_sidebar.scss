@@ -1,0 +1,141 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the sidebar.
+// -----------------------------------------------------------------------------
+sidebar {
+  @include respond-to(xs) {
+    position  : fixed;
+    z-index   : 201;
+    top       : 70px;
+    width     : 100%;
+    height    : 0;
+    box-shadow: 1px 5px 15px $dark-gray;
+    transition: 0.2s;
+    overflow-y: hidden;
+
+    &.active {
+      height    : 130px;
+      transition: 0.2s;
+      overflow-y: unset;
+    }
+
+    .sidebar-block {
+      height : 80px;
+      padding: 0 15px;
+      @include flexbox(space-between);
+    }
+
+    a {
+      @include on-event() {
+        border: none;
+      }
+      margin: 0;
+    }
+  }
+  @include respond-to(md) {
+    position  : fixed;
+    display   : inline-block;
+    z-index   : 201;
+    top       : 70px;
+    left      : 0;
+    width     : 90px;
+    min-height: calc(100vh - 70px);
+    padding   : 0;
+    margin    : 0;
+    box-shadow: none;
+
+    .sidebar-block {
+      height : auto;
+      padding: 0;
+      @include flexbox(center,center, column);
+    }
+
+    a {
+      @include on-event() {
+        border-right: 3px solid $blue;
+      }
+      width     : 100%;
+      margin-top: 20px;
+    }
+  }
+
+  background-color: $mid-gray;
+  border-right    : solid 0.5px $blue-gray;
+
+  .g-nav__search--mobile {
+    position  : relative;
+    float     : left;
+    width     : 100%;
+    height    : 50px;
+    text-align: left;
+    background: $light-gray;
+
+    &:active,
+    &:focus {
+      outline: none;
+
+      ~ .autocomplete-dropdown {
+        max-height: 300px !important;
+        height    : auto;
+        border-top: 1px solid #252839;
+      }
+    }
+
+    input {
+      width  : 100%;
+      padding: 0 30px;
+      color  : $white;
+    }
+
+    i {
+      position : absolute;
+      top      : 20px;
+      display  : inline-block;
+      width    : 10px;
+      height   : 10px;
+      font-size: 10px;
+      color    : $white;
+      cursor   : pointer;
+    }
+
+    .icon-search {
+      left: 10px;
+    }
+
+    .icon-cancel {
+      right: 10px;
+    }
+
+    @include respond-to(xs) {
+      display: inline-block;
+    }
+    @include respond-to(md) {
+      display: none;
+    }
+  }
+
+  a {
+    @include on-event() {
+      color          : $white !important;
+      text-decoration: none;
+    }
+    display        : block;
+    height         : 55px;
+    color          : $blue-gray !important;
+    font-size      : 14px;
+    text-decoration: none;
+    text-transform : uppercase;
+    text-align     : center;
+
+    p {
+      color: inherit;
+    }
+
+    i {
+      width        : 100%;
+      height       : 28px;
+      margin-bottom: 6px;
+      font-size    : 25px;
+      text-align   : center;
+    }
+  }
+}

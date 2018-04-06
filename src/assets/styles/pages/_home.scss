@@ -1,0 +1,38 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+
+.p-home {
+  @include respond-to(xs) {
+    padding: 0;
+  }
+  @include respond-to(md) {
+    padding: 0 60px;
+  }
+  position: relative;
+  justify-content: flex-start;
+  &__banner-notification {
+    @include respond-to(xs) {
+     padding: 15px;
+    }
+    @include respond-to(md) {
+      padding: 15px;
+    }
+    @include respond-to(md) {
+      padding: 15px 90px;
+    }
+    height: 100%;
+    border-radius: 4px;
+    background-color: $mid-gray;
+    text-align: center;
+    p {
+      color: $white;
+    }
+    a {
+      text-decoration: underline;
+    }
+  }
+  &__movies {
+    padding-top: 13px;
+  }
+}

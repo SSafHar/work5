@@ -1,0 +1,238 @@
+.b-filters {
+  @include respond-to(xs) {
+    max-height: 0;
+    height    : 0;
+    left      : 0;
+    width     : 100%;
+    overflow  : hidden;
+  }
+
+  @include respond-to(md) {
+    left      : -85px;
+    width     : 225px;
+    max-height: calc(100vh - 70px);
+    height    : calc(100vh - 70px);
+    overflow  : unset;
+
+    .b-filters__body {
+      height: calc(100vh - 70px);
+      max-height: calc(100vh - 70px);
+    }
+  }
+
+  z-index         : 200;
+  top             : 70px;
+  position        : fixed;
+  background-color: $mid-gray;
+  transition      : 0.5s;
+
+  @include on-active() {
+    @include respond-to(xs) {
+      left      : 0;
+      transition: 0;
+      max-height: calc(100vh - 70px);
+      height    : auto;
+    }
+    @include respond-to(md) {
+      left      : 90px;
+      transition: 0.5s;
+
+      .b-filters__toggle {
+        border-left: solid 0.5px $blue-gray;
+      }
+    }
+  }
+
+  &__toggle {
+    @include respond-to(xs) {
+      display: none;
+    }
+
+    @include respond-to(md) {
+      display: flex;
+    }
+
+    position    : relative;
+    float       : left;
+    width       : 50px;
+    height      : calc(100vh - 70px);
+    border-right: solid 0.5px $blue-gray;
+    right       : 0;
+    @include flexbox(center, center, column);
+
+    p {
+      color      : $white;
+      white-space: nowrap;
+      transform  : rotateZ(-90deg);
+    }
+
+    i {
+      position        : absolute;
+      top             : calc(50% - 21px);
+      right           : -21px;
+      width           : 42px;
+      height          : 42px;
+      padding-top     : 10px;
+      border-radius   : 50%;
+      background-color: $mid-gray;
+      text-align      : center;
+      font-size       : 20px;
+      color           : $white;
+      cursor          : pointer;
+    }
+  }
+
+  &__desktop--head {
+    @include respond-to(xs) {
+      display: none;
+    }
+    @include respond-to(md) {
+      display: block;
+    }
+
+    width : 100%;
+    margin: -20px 0 0;
+
+    h2 {
+      margin          : 0 -30px;
+      height          : 95px;
+      padding-top     : 35px;
+      text-align      : center;
+      background-color: $charcoal-grey;
+    }
+
+    h3 {
+      margin: 10px 0 18px;
+      color : $blue-gray;
+    }
+  }
+
+  &__mobile--head {
+    @include respond-to(xs) {
+      dislay      : block;
+      width       : 100%;
+      padding     : 10px 30px;
+      margin-right: 0;
+      text-align  : left;
+      @include background-linear-gradient();
+    }
+    @include respond-to(md) {
+      display: none;
+    }
+    font-size    : 13px;
+    color        : $white;
+    white-space  : nowrap;
+    overflow     : hidden;
+    text-overflow: ellipsis;
+
+    span {
+      float      : left;
+      color      : $white;
+      padding-top: 5px;
+    }
+
+    i {
+      @include respond-to(xs) {
+        display: inline-block;
+      }
+      @include respond-to(md) {
+        display: none;
+      }
+      float        : right;
+      width        : 28px;
+      height       : 28px;
+      padding-top  : 5px;
+      border       : 2px sloid $white;
+      border-radius: 50%;
+    }
+
+    + div {
+      max-height: 0;
+      height    : 0;
+      padding   : 0 20px;
+      overflow  : hidden;
+      color     : $white;
+      @include flexbox();
+
+      @include on-active() {
+        max-height: calc(100vh - 70px);
+        height    : auto;
+        padding   : 20px;
+      }
+
+      button {
+        margin          : 5px;
+        background-color: $mid-gray;
+      }
+    }
+  }
+
+  &__body {
+    @include respond-to(xs) {
+      width           : 100%;
+      padding         : 0;
+      border-radius   : 0;
+      background-color: $mid-gray;
+      padding         : 0 20px;
+
+      @include on-active() {
+        padding: 20px;
+      }
+    }
+    @include respond-to(md) {
+      width           : 175px;
+      padding         : 0 30px;
+      border-radius   : 4px;
+      background-color: transparent;
+
+      @include on-active() {
+        padding: 0 30px;
+      }
+    }
+
+    float        : left;
+    margin-bottom: 0;
+    overflow-x   : hidden;
+    overflow-y   : scroll;
+    transition   : 0.5s;
+    @extend %custom-scroll;
+
+    .g-checkbox {
+      @include respond-to(xs) {
+        i {
+          display: none;
+        }
+
+        input:checked {
+          ~label {
+            @include background-linear-gradient();
+          }
+        }
+        width: calc(100% / 3);
+
+        label {
+          border-radius: 10px;
+        }
+      }
+
+      @include respond-to(md) {
+        i {
+          display: inline-block;
+        }
+
+        input:checked {
+          ~label {
+            background: transparent !important;
+          }
+        }
+
+        @include on-event() {
+          background: transparent;
+          border    : none;
+        }
+        width        : 100%;
+        border-radius: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+// -----------------------------------------------------------------------------
+// This file contains all colors
+// -----------------------------------------------------------------------------
+/// Slightly lighten a color
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage [0.8] - percentage of $color in returned color
+/// @return {Color}
+@function tint($color, $percentage: 0.8) {
+  $percent: $percentage*100%;
+  @return mix(white, $color, $percent);
+}
+
+/// Slightly darken a color
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage [0.8] - percentage of $color in returned color
+/// @return {Color}
+@function shade($color, $percentage: 0.8) {
+  $percent: $percentage*100%;
+  @return mix(black, $color, $percent);
+}
+////
+/// This is a group comment will create a new sidebar item in sassdoc.
+/// @group Colors
+
+/// This is the primary text color
+/// @type Color
+$white: #ffffff !default;
+
+/// This color is used for input input valid highlight
+/// @type Color
+$blue: #46cdfc !default;
+
+/// This color is used for background admin button arrow
+/// @type Color
+$sky-blue: #5c96fa !default;
+
+/// This color is used for input invalid highlight
+/// @type Color
+$red: #d0021b !default;
+
+/// This color is used for input invalid highlight
+/// @type Color
+$green: #417505 !default;
+
+/// This color is used for border home page movies iMDb
+/// @type Color
+$yellow: #f8e71c !default;
+
+/// This color is used premium page
+/// @type Color
+$pink: #bd10e0 !default;
+
+/// This color is used premium page
+/// @type Color
+$purple: #9013fe !default;
+
+/// This color is used in modal for upload new media button background
+/// @type Color
+$white-gray: #9b9b9b !default;
+
+/// This color is used for main body background
+/// @type Color
+$light-gray: #2d3145 !default;
+
+/// This color is used for sidebar background
+/// @type Color
+$mid-gray: #252839 !default;
+
+/// This color is used for navbar background
+/// @type Color
+$dark-gray: #1e202e !default;
+
+/// This color is used for paragraph, link, input
+/// @type Color
+$blue-gray: #5e658d !default;
+
+/// This color is used for Add New Media modal paragraph
+/// @type Color
+$light-blue-gray: #b2b8c7 !default;
+
+/// This color is used for admin members setting
+/// @type Color
+$charcoal-grey: #384051 !default;
+
+/// This color is used for admin clear filters text background
+/// @type Color
+$black-grey: #181c26 !default;
+
+/// This color is used for premium cards
+/// @type Color
+$premium-grey: #58627c !default;
+
+/// This color is used for image hover element background
+/// @type Color
+$black: rgba(0,0,0,0.8) !default;
+
+/// This color is for the gradient elements
+/// @type Color
+$gradient-color1: #6e43fa !default;
+
+/// This color is for the gradient elements
+/// @type Color
+$gradient-color2: #4fccfa !default;
+
+/// This is a linear gradient color mixin for the borders
+/// @param {Number} $degree [68] - linear gradient angle
+/// @param {String} $color1 [$gradient-color1] - start color
+/// @param {String} $color2 [$gradient-color2] - end color
+/// @example @include background-gradient(background, 48, #fff, #000);
+@mixin border-linear-gradient($degree: 68, $color1: $gradient-color1, $color2: $gradient-color2) {
+  $degreeString       : $degree + deg;
+  -moz-border-image   : -moz-linear-gradient($degreeString, $color1, $color2) !important;
+  -webkit-border-image: -webkit-linear-gradient($degreeString, $color1, $color2) !important;
+  border-image        : linear-gradient($degreeString, $color1, $color2) !important;
+  border-image-slice  : 1;
+}
+
+/// This is a linear gradient color mixin for the backgrounds
+/// @param {Number} $degree [68] - linear gradient angle
+/// @param {String} $color1 [$gradient-color1] - start color
+/// @param {String} $color2 [$gradient-color2] - end color
+/// @example @include background-gradient(background, 48, #fff, #000);
+@mixin background-linear-gradient($degree: 68, $color1: $gradient-color1, $color2: $gradient-color2) {
+  $degreeString: $degree + deg;
+  background   : -moz-linear-gradient($degreeString, $color1, $color2) !important;
+  /* FF3.6+ */
+  background   : -webkit-gradient($degreeString, $color1, $color2) !important;
+  /* Chrome,Safari4+ */
+  background   : -webkit-linear-gradient($degreeString, $color1, $color2) !important;
+  /* Chrome10+,Safari5.1+ */
+  background   : -o-linear-gradient($degreeString, $color1, $color2) !important;
+  /* Opera 11.10+ */
+  background   : -ms-linear-gradient($degreeString, $color1, $color2) !important;
+  /* IE10+ */
+}
